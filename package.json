@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/nguyenmanh1507/simple-basic-library/issues"
   },
-  "homepage": "https://github.com/nguyenmanh1507/simple-basic-library#readme"
+  "homepage": "https://github.com/nguyenmanh1507/simple-basic-library#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.12.0",
+    "jshint-stylish": "^2.0.1"
+  }
 }
