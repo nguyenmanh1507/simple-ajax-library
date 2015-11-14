@@ -7,26 +7,33 @@
 
 	link.onclick = function() {
 
-		// Create XHR Object
-		var xhr = new XMLHttpRequest();
+		// // Create XHR Object
+		// var xhr = new XMLHttpRequest();
 
-		// Handle 'onreadystatechange' event
-		xhr.onreadystatechange = function() {
-			if ( ( xhr.readyState === 4 ) && ( xhr.status === 200 || xhr.status === 304 ) ) {
-				var response = xhr.responseText;
-				var hText = document.createTextNode(response);
+		// // Handle 'onreadystatechange' event
+		// xhr.onreadystatechange = function() {
+		// 	if ( ( xhr.readyState === 4 ) && ( xhr.status === 200 || xhr.status === 304 ) ) {
+		// 		var response = xhr.responseText;
+		// 		var hText = document.createTextNode(response);
 
-				heading.appendChild(hText);
-				body.appendChild(heading);
-				body.removeChild(link);
+		// 		heading.appendChild(hText);
+		// 		body.appendChild(heading);
+		// 		body.removeChild(link);
+		// 	}
+		// };
+
+		// // Open the request
+		// xhr.open( 'GET', 'files/ajax.txt', true );
+
+		// // Send the request
+		// xhr.send( null );
+
+		Nm.ajax('files/ajax.json', {
+			method: 'GET',
+			complete: function( response ) {
+				console.log(response);
 			}
-		};
-
-		// Open the request
-		xhr.open( 'GET', 'files/ajax.txt', true );
-
-		// Send the request
-		xhr.send( null );
+		});
 
 		return false;
 	};
