@@ -21,8 +21,9 @@
 		;
 
 		for ( key in response.items ) {
-			var listText = document.createTextNode(response.items[key]);
-			var list = document.createElement('li');
+			var listText = document.createTextNode(response.items[key]),
+			    list = document.createElement('li')
+			  ;
 			list.appendChild(listText);
 			lists.appendChild(list);
 		}
