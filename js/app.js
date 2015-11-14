@@ -1,41 +1,37 @@
 (function() {
 	'use strict';
-	var body = document.getElementsByTagName('body')[0],
-			link = document.getElementsByTagName('a')[0],
-			heading = document.createElement('h1')
-		;
+	var link = document.getElementsByTagName('a')[0];
 
 	link.onclick = function() {
 
-		// // Create XHR Object
-		// var xhr = new XMLHttpRequest();
-
-		// // Handle 'onreadystatechange' event
-		// xhr.onreadystatechange = function() {
-		// 	if ( ( xhr.readyState === 4 ) && ( xhr.status === 200 || xhr.status === 304 ) ) {
-		// 		var response = xhr.responseText;
-		// 		var hText = document.createTextNode(response);
-
-		// 		heading.appendChild(hText);
-		// 		body.appendChild(heading);
-		// 		body.removeChild(link);
-		// 	}
-		// };
-
-		// // Open the request
-		// xhr.open( 'GET', 'files/ajax.txt', true );
-
-		// // Send the request
-		// xhr.send( null );
-
 		Nm.ajax('files/ajax.json', {
 			method: 'GET',
-			complete: function( response ) {
-				console.log(response);
-			}
+			complete: handleJSONResponse
 		});
 
 		return false;
 	};
+
+	function handleJSONResponse( response ) {
+		var body = document.getElementsByTagName('body')[0],	
+			heading = document.createElement('h1'),
+			lists = document.createElement('ul'),
+			hText = document.createTextNode(response.heading),
+			key
+		;
+
+		for ( key in response.items ) {
+			var listText = document.createTextNode(response.items[key]);
+			var list = document.createElement('li');
+			list.appendChild(listText);
+			lists.appendChild(list);
+		}
+
+		heading.appendChild(hText);
+		body.appendChild(heading);
+		body.appendChild(lists);
+		body.removeChild(link);
+
+	}
 
 }());
