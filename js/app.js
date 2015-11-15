@@ -6,12 +6,14 @@
 
 		Nm.ajax('files/ajax.json', {
 			method: 'GET',
+			cache: false,
 			complete: handleJSONResponse
 		});
 
 		return false;
 	};
 
+	// Handle JSON response
 	function handleJSONResponse( response ) {
 		var body = document.getElementsByTagName('body')[0],	
 			heading = document.createElement('h1'),
@@ -33,6 +35,11 @@
 		body.appendChild(lists);
 		body.removeChild(link);
 
+	}
+
+	// Handle text response
+	function handleTextResponse( response ) {
+		console.log( response );
 	}
 
 	// Submit form
