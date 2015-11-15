@@ -35,4 +35,40 @@
 
 	}
 
+	// Submit form
+	var form = document.getElementsByTagName('form')[0];
+
+	form.onsubmit = function() {
+
+		var emailVal = document.getElementById('email').value,
+		    url = form.getAttribute('action'),
+			  body = document.getElementsByTagName('body')[0],
+				d = document.createElement('div')
+			;
+
+		body.appendChild(d);
+		var div = document.getElementsByTagName('div')[0];
+
+		var handleFormSubmit = function( response ) {
+			div.innerHTML = response;
+			Nm.flash(div);
+		};
+
+		var beforeEvent = function() {
+			div.innerHTML = '<p>Loading...</p>';
+		};
+
+		Nm.ajax(url, {
+			method: 'POST',
+			data: {
+				email: emailVal
+			},
+			before: beforeEvent,
+			complete: handleFormSubmit
+		});
+
+		return false;
+
+	};
+
 }());
