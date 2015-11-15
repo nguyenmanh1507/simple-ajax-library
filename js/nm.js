@@ -32,6 +32,10 @@ Nm.createXHR = function( url, options ) {
 				}
 			}
 
+			if ( options.cache === false && options.method.toUpperCase() === 'GET' ) {
+				url = url + '?_=' + new Date().getTime();
+			}
+
 			if ( ( xhr.readyState === 4 ) && ( xhr.status === 200 || xhr.status === 304 ) ) {
 				var contentType = xhr.getResponseHeader( 'Content-Type' );
 				if ( options.complete ) {
