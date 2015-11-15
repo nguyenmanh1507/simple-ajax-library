@@ -1,10 +1,11 @@
 (function() {
 	'use strict';
+
 	var link = document.getElementsByTagName('a')[0];
 
 	link.onclick = function() {
 
-		Nm.ajax('files/ajax.json', {
+		Ngm.ajax('files/ajax.json', {
 			method: 'GET',
 			cache: false,
 			complete: handleJSONResponse
@@ -58,14 +59,14 @@
 
 		var handleFormSubmit = function( response ) {
 			div.innerHTML = response;
-			Nm.flash(div);
+			Ngm.flash(div);
 		};
 
 		var beforeEvent = function() {
 			div.innerHTML = '<p>Loading...</p>';
 		};
 
-		Nm.ajax(url, {
+		Ngm.ajax(url, {
 			method: 'POST',
 			data: {
 				email: emailVal
